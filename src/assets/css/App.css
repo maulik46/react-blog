@@ -1,0 +1,13 @@
+.my-navbar {
+  background-color: #282c34;
+  height: 40px;
+  padding:10px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
