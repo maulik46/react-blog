@@ -1,5 +1,5 @@
 import React from "react";
-export default function BlogModel({ id, title, description, onClose }) {
+export default function BlogModel({ title, description, onClose }) {
     return (
         <React.Fragment>
             <div>

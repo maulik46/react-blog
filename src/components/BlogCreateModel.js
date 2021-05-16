@@ -7,17 +7,11 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
     function handleBlogTitle(e) {
         let title = e.target.value;
         setBlogTitle(title);
-        blogTitle.length > 0 && blogDescription.length > 0
-            ? setIsValid(true)
-            : setIsValid(false);
     }
 
     function handleBlogDescription(e) {
         let description = e.target.value;
         setBlogDescription(description);
-        blogTitle.length > 0 && blogDescription.length > 0
-            ? setIsValid(true)
-            : setIsValid(false);
     }
 
     function submitBlog() {
@@ -57,7 +51,7 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
                                 <input
                                     type="text"
                                     className={
-                                        !isValid
+                                        !isValid && blogTitle.length === 0
                                             ? "form-control is-invalid"
                                             : "form-control"
                                     }
@@ -72,7 +66,7 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
                             <div className="form-floating">
                                 <textarea
                                     className={
-                                        !isValid
+                                        !isValid && blogDescription.length === 0
                                             ? "form-control is-invalid"
                                             : "form-control"
                                     }
