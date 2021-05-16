@@ -53,9 +53,9 @@ export default function Index() {
 
     return (
         <React.Fragment>
-            <div className="px-1 px-sm-3 mt-3 mb-2 mx-2 mx-sm-3">
-                <nav className="alert alert-success navbar">
-                    <h5>All Blogs</h5>
+            <div className="px-1 px-sm-3 mt-3 mx-2 mx-sm-3">
+                <nav className="navbar rounded-2">
+                    <h4>All Blogs</h4>
                     <div>
                         <button
                             className="btn btn-success px-3"

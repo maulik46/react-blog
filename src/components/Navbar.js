@@ -1,9 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
-import Index from "../views/index";
-import About from "../views/about";
-import Contact from "../views/contact-us";
+import RouterLinks from "../RouterLinks";
 
 function Navbar() {
     return (
@@ -15,40 +13,30 @@ function Navbar() {
                     </div>
                     <ul className="nav">
                         <li className="nav-item mx-1">
-                            <Link to="/">
-                                <button className="nav-link active text-white btn btn-link shadow-none rounded-1">
-                                    Home
-                                </button>
-                            </Link>
-                        </li>
-                        <li className="nav-item mx-1">
-                            <Link to="/about">
+                            <NavLink to="/" exact activeClassName="active">
                                 <button className="nav-link text-white btn btn-link shadow-none rounded-1">
-                                    About
+                                    Blog Todo
                                 </button>
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className="nav-item mx-1">
-                            <Link to="/contact-us">
+                            <NavLink to="/number-game">
+                                <button className="nav-link text-white btn btn-link shadow-none rounded-1">
+                                    Number Game
+                                </button>
+                            </NavLink>
+                        </li>
+                        <li className="nav-item mx-1">
+                            <NavLink to="/contact-us">
                                 <button className="nav-link text-white btn btn-link shadow-none rounded-1">
                                     Contact us
                                 </button>
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>
 
-                <Switch>
-                    <Route path="/contact-us">
-                        <Contact />
-                    </Route>
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                    <Route path="/">
-                        <Index />
-                    </Route>
-                </Switch>
+                <RouterLinks />
             </Router>
         </>
     );
