@@ -7,10 +7,10 @@ function Navbar() {
     return (
         <>
             <Router>
-                <div className="navbar bg-dark p-2 flex-wrap">
-                    <div className="m-2">
+                <div className="navbar justify-content-end bg-dark p-2 flex-wrap">
+                    {/* <div className="m-2">
                         <h5 className="text-white ">My Blogs</h5>
-                    </div>
+                    </div> */}
                     <ul className="nav">
                         <li className="nav-item mx-1">
                             <NavLink to="/" exact activeClassName="active">
@@ -26,13 +26,13 @@ function Navbar() {
                                 </button>
                             </NavLink>
                         </li>
-                        <li className="nav-item mx-1">
+                        {/* <li className="nav-item mx-1">
                             <NavLink to="/contact-us">
                                 <button className="nav-link text-white btn btn-link shadow-none rounded-1">
                                     Contact us
                                 </button>
                             </NavLink>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 
