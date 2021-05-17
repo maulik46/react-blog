@@ -58,13 +58,13 @@ export default function NumberGame() {
                 if (turnLeft > 1) {
                     if (answerNumber - userAnswer === 1) {
                         const hintNumber = userAnswer;
-                        setHint(`Number is grator than ${hintNumber}.`);
+                        setHint(`Number is greater than ${hintNumber}.`);
                     } else {
                         const hintNumber = generateRandom(
                             userAnswer,
                             answerNumber - 1
                         );
-                        setHint(`Number is grator than ${hintNumber}.`);
+                        setHint(`Number is greater than ${hintNumber}.`);
                     }
                 } else {
                     setHint(`You have 0 turn left.`);
