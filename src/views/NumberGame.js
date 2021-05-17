@@ -12,7 +12,11 @@ export default function NumberGame() {
     }
 
     useEffect(() => {
-        generateNew();
+        const generateNum = generateRandom(1, 100);
+        setAnswerNumber(generateNum);
+        // console.log({ generateNum });
+        setturnLeft(5);
+        userNumber.current.value = "";
     }, []);
 
     function getAnswer() {
@@ -25,7 +29,6 @@ export default function NumberGame() {
         const generateNum = generateRandom(1, 100);
         setAnswerNumber(generateNum);
         setturnLeft(5);
-        // console.log({ generateNum });
         userNumber.current.value = "";
     }
 
@@ -121,6 +124,11 @@ export default function NumberGame() {
                         type="number"
                         className="form-control"
                         ref={userNumber}
+                        onKeyPress={(e) => {
+                            if (e.which === 13) {
+                                checkAnswer();
+                            }
+                        }}
                         placeholder="Enter number between 1 to 100"
                     />
                     <label style={{ fontSize: "14px" }}>
