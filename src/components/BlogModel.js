@@ -14,7 +14,11 @@ export default function BlogModel({ title, description, onClose }) {
                             ></button>
                         </div>
                         <div className="modal-body">
-                            <p>{description}</p>
+                            <p
+                                dangerouslySetInnerHTML={{
+                                    __html: description,
+                                }}
+                            ></p>
                         </div>
                         <div className="modal-footer">
                             <button

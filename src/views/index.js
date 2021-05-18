@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BlogCard from "../components/BlogCard";
 import BlogModel from "../components/BlogModel";
 import BlogCreateModel from "../components/BlogCreateModel";
@@ -31,7 +31,9 @@ export default function Index() {
     const [blogDetail, setblogDetail] = useState({});
     const [isOpenModel, setOpenModel] = useState(false);
     const [isOpenCreateModel, setOpenCreateModel] = useState(false);
-
+    useEffect(() => {
+        document.title = "Home";
+    });
     function viewBlog(index) {
         const blogPost = blogs[index];
         setOpenModel(true);

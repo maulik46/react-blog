@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import BlogModel from "../components/BlogModel";
+import BackDrop from "../components/BackDrop";
 
 export default function NumberGame() {
     const [answerNumber, setAnswerNumber] = useState("");
@@ -6,12 +8,24 @@ export default function NumberGame() {
     const [isRightAnswer, setIsRightAnswer] = useState(false);
     const [turnLeft, setturnLeft] = useState(5);
     const userNumber = useRef();
+    const [isOpenModel, setOpenModel] = useState(false);
+    const numberGameHelp = {
+        title: "Help",
+        description: `<strong>1.</strong> First enter number between 1 to 100.<br/>
+        <strong>2.</strong> Press Check button to check your answer.<br/>
+        <strong>3.</strong> You will get hint every time you press Check button.<br/>
+        <strong>4.</strong> You have total 5 turn to check your answer.<br/>
+        <strong>5.</strong> To reset game press Reset button.<br/>
+        <strong>6.</strong> To find right answer press Answer button. <br/>
+        `,
+    };
 
     function generateRandom(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
     useEffect(() => {
+        document.title = "Number Game";
         const generateNum = generateRandom(1, 100);
         setAnswerNumber(generateNum);
         // console.log({ generateNum });
@@ -41,7 +55,8 @@ export default function NumberGame() {
     }
 
     function checkAnswer() {
-        const userAnswer = Number(userNumber.current.value);
+        const userAnswer = Math.round(Number(userNumber.current.value));
+
         setIsRightAnswer(false);
 
         if (userAnswer > 0 && userAnswer <= 100 && turnLeft !== 0) {
@@ -67,7 +82,7 @@ export default function NumberGame() {
                         setHint(`Number is greater than ${hintNumber}.`);
                     }
                 } else {
-                    setHint(`You have 0 turn left.`);
+                    setHint(`You have 0 turn left. Answer is ${answerNumber}`);
                 }
             } else if (userAnswer > answerNumber) {
                 setturnLeft(turnLeft - 1);
@@ -83,7 +98,7 @@ export default function NumberGame() {
                         setHint(`Number is less than ${hintNumber}.`);
                     }
                 } else {
-                    setHint(`You have 0 turn left.`);
+                    setHint(`You have 0 turn left. Answer is ${answerNumber}`);
                 }
             }
 
@@ -92,7 +107,7 @@ export default function NumberGame() {
             userNumber.current.value = "";
             setHint(`Number must be between 1 to 100.`);
             if (turnLeft === 0) {
-                setHint(`You have 0 turn left.`);
+                setHint(`You have 0 turn left. Answer is ${answerNumber}`);
             }
         }
     }
@@ -164,9 +179,27 @@ export default function NumberGame() {
                                 </button>
                             </div>
                         </div>
+                        <div className="mt-3">
+                            <button
+                                className="btn btn-link btn-sm text-decoration-none w-100"
+                                onClick={() => setOpenModel(true)}
+                            >
+                                <strong>How to play?</strong>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+            {isOpenModel && (
+                <BackDrop
+                    model={
+                        <BlogModel
+                            {...numberGameHelp}
+                            onClose={() => setOpenModel(false)}
+                        />
+                    }
+                ></BackDrop>
+            )}
         </React.Fragment>
     );
 }
