@@ -137,7 +137,7 @@ export default function NumberGame() {
 
                     <input
                         type="number"
-                        className="form-control"
+                        className="form-control py-2"
                         ref={userNumber}
                         onKeyPress={(e) => {
                             if (e.which === 13) {
