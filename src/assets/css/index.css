@@ -10,6 +10,9 @@ body {
 .set-model-with {
     width: 600px !important;
 }
+.logoHeading a {
+    text-decoration: none;
+}
 
 .nav-item a {
     text-decoration: none;
@@ -22,9 +25,27 @@ body {
 .nav-item a.active .nav-link {
     background-color: rgba(255, 255, 255, 0.2);
 }
+.topNavigation {
+    z-index: 1;
+}
+
+.mySidebar {
+    width: 300px;
+    background-color: var(--bs-gray-dark);
+    padding: 10px;
+    position: fixed;
+    height: 100vh;
+    z-index: 3;
+    top: 0px;
+    left: 0px;
+}
 
 @media screen and (max-width: 700px) {
     .set-model-with {
         width: 340px !important;
+    }
+
+    .mySidebar {
+        width: 300px;
     }
 }

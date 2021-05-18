@@ -9,7 +9,6 @@ export default function App() {
     return (
         <React.Fragment>
             <Navbar />
-            {/* <Index /> */}
         </React.Fragment>
     );
 }
