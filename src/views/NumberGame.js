@@ -135,27 +135,35 @@ export default function NumberGame() {
                         You have <strong>{turnLeft}</strong> turn left
                     </label>
                     <div className="mt-3">
-                        <button
-                            type="button"
-                            onClick={checkAnswer}
-                            className="btn btn-success px-3"
-                        >
-                            Check
-                        </button>
-                        <button
-                            type="button"
-                            onClick={getReset}
-                            className="btn btn-danger px-3 mx-2"
-                        >
-                            Reset
-                        </button>
-                        <button
-                            type="button"
-                            onClick={getAnswer}
-                            className="btn btn-info px-3"
-                        >
-                            Answer
-                        </button>
+                        <div className="mt-3">
+                            <button
+                                type="button"
+                                onClick={checkAnswer}
+                                className="btn btn-success px-3 w-100"
+                            >
+                                Check
+                            </button>
+                        </div>
+                        <div className="row mt-2">
+                            <div className="col-6">
+                                <button
+                                    type="button"
+                                    onClick={getReset}
+                                    className="btn btn-danger w-100 px-3"
+                                >
+                                    Reset
+                                </button>
+                            </div>
+                            <div className="col-6">
+                                <button
+                                    type="button"
+                                    onClick={getAnswer}
+                                    className="btn btn-info w-100 px-3"
+                                >
+                                    Answer
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
