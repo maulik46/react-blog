@@ -4,7 +4,7 @@ import BlogModel from "../components/BlogModel";
 import BlogCreateModel from "../components/BlogCreateModel";
 import BackDrop from "../components/BackDrop";
 
-export default function Index() {
+export default function Index({ pageTitle }) {
     const allBlogs = [
         {
             title: "Lorem title",
@@ -31,9 +31,11 @@ export default function Index() {
     const [blogDetail, setblogDetail] = useState({});
     const [isOpenModel, setOpenModel] = useState(false);
     const [isOpenCreateModel, setOpenCreateModel] = useState(false);
+
     useEffect(() => {
-        document.title = "Home";
-    });
+        document.title = pageTitle;
+    }, [pageTitle]);
+
     function viewBlog(index) {
         const blogPost = blogs[index];
         setOpenModel(true);

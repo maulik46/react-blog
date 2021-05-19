@@ -2,13 +2,16 @@ import React, { useEffect, useState, useRef } from "react";
 import BlogModel from "../components/BlogModel";
 import BackDrop from "../components/BackDrop";
 
-export default function NumberGame() {
+export default function NumberGame({ pageTitle }) {
     const [answerNumber, setAnswerNumber] = useState("");
     const [hint, setHint] = useState("");
     const [isRightAnswer, setIsRightAnswer] = useState(false);
     const [turnLeft, setturnLeft] = useState(5);
-    const userNumber = useRef();
     const [isOpenModel, setOpenModel] = useState(false);
+    const [totalTurn, setTotalTurn] = useState([]);
+
+    const userNumber = useRef();
+
     const numberGameHelp = {
         title: "Help",
         description: `<strong>1.</strong> First enter number between 1 to 100.<br/>
@@ -25,24 +28,36 @@ export default function NumberGame() {
     }
 
     useEffect(() => {
-        document.title = "Number Game";
+        document.title = pageTitle;
         const generateNum = generateRandom(1, 100);
         setAnswerNumber(generateNum);
         // console.log({ generateNum });
         setturnLeft(5);
         userNumber.current.value = "";
-    }, []);
+    }, [pageTitle]);
+
+    useEffect(() => {
+        if (isRightAnswer === true) {
+            setTimeout(() => {
+                setTotalTurn([]);
+            }, 3000);
+        }
+    }, [isRightAnswer]);
 
     function getAnswer() {
         setHint(`Right answer is ${answerNumber}`);
         generateNew();
+        setTotalTurn([]);
         userNumber.current.value = "";
     }
 
     function generateNew() {
         const generateNum = generateRandom(1, 100);
+        // console.log({ generateNum });
         setAnswerNumber(generateNum);
         setturnLeft(5);
+        setTotalTurn([]);
+
         userNumber.current.value = "";
     }
 
@@ -50,6 +65,7 @@ export default function NumberGame() {
         generateNew();
         setHint("");
         setturnLeft(5);
+        setTotalTurn([]);
 
         userNumber.current.value = "";
     }
@@ -57,14 +73,16 @@ export default function NumberGame() {
     function checkAnswer() {
         const userAnswer = Math.round(Number(userNumber.current.value));
 
-        setIsRightAnswer(false);
-
         if (userAnswer > 0 && userAnswer <= 100 && turnLeft !== 0) {
+            let hasWon = false;
+            setIsRightAnswer(false);
             if (userAnswer === answerNumber) {
                 setHint(`${answerNumber} is right answer.`);
                 setIsRightAnswer(true);
                 generateNew();
                 setturnLeft(5);
+                hasWon = true;
+
                 setTimeout(() => {
                     setHint("");
                 }, 3000);
@@ -101,6 +119,13 @@ export default function NumberGame() {
                     setHint(`You have 0 turn left. Answer is ${answerNumber}`);
                 }
             }
+            setTotalTurn([
+                ...totalTurn,
+                {
+                    myNumber: userAnswer,
+                    result: hasWon,
+                },
+            ]);
 
             userNumber.current.value = "";
         } else {
@@ -108,6 +133,7 @@ export default function NumberGame() {
             setHint(`Number must be between 1 to 100.`);
             if (turnLeft === 0) {
                 setHint(`You have 0 turn left. Answer is ${answerNumber}`);
+                setTotalTurn([]);
             }
         }
     }
@@ -187,6 +213,38 @@ export default function NumberGame() {
                                 <strong>How to play?</strong>
                             </button>
                         </div>
+                        {totalTurn.length > 0 && (
+                            <div className="mt-2">
+                                <table className="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>My Number</th>
+                                            <th>Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {totalTurn.map((turn, index) => (
+                                            <React.Fragment key={index}>
+                                                <tr>
+                                                    <td>{turn.myNumber}</td>
+                                                    <td>
+                                                        {turn.result ? (
+                                                            <strong className="text-success">
+                                                                Won
+                                                            </strong>
+                                                        ) : (
+                                                            <strong className="text-danger">
+                                                                Failed
+                                                            </strong>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            </React.Fragment>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

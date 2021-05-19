@@ -1,22 +1,22 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import Index from "./views/index";
-import NumberGame from "./views/NumberGame";
-import Contact from "./views/contact-us";
+import Index from "../views/index";
+import NumberGame from "../views/NumberGame";
+import SimonGame from "../views/simonGame";
 
 export default function RouterLinks() {
     return (
         <>
             <Switch>
                 <Route exact path="/">
-                    <Index />
+                    <Index pageTitle="Home" />
                 </Route>
                 <Route path="/number-game">
-                    <NumberGame />
+                    <NumberGame pageTitle="Number Game" />
                 </Route>
-                <Route path="/contact-us">
-                    <Contact />
+                <Route path="/simon-game">
+                    <SimonGame />
                 </Route>
             </Switch>
         </>

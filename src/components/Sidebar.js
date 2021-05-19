@@ -2,8 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar({ onClickMenu, onCloseMenu }) {
+    const all_links = [
+        { name: "Blog Todo", route: "/" },
+        { name: "Number Game", route: "/number-game" },
+        { name: "Simon Game", route: "/simon-game" },
+    ];
+
     return (
-        <>
+        <React.Fragment>
             <div className="mySidebar overflow-auto">
                 <ul className="nav flex-column">
                     <li className="nav-item d-block d-sm-none">
@@ -33,26 +39,24 @@ export default function Sidebar({ onClickMenu, onCloseMenu }) {
                             </svg>
                         </button>
                     </li>
-                    <li className="nav-item my-1">
-                        <NavLink to="/" exact activeClassName="active">
-                            <button
-                                className="nav-link text-white btn btn-link shadow-none rounded-1 w-100 text-left"
-                                onClick={onClickMenu}
-                            >
-                                Blog Todo
-                            </button>
-                        </NavLink>
-                    </li>
-                    <li className="nav-item my-1">
-                        <NavLink to="/number-game">
-                            <button
-                                className="nav-link text-white btn btn-link shadow-none rounded-1 w-100"
-                                onClick={onClickMenu}
-                            >
-                                Number Game
-                            </button>
-                        </NavLink>
-                    </li>
+                    {all_links.map((item, index) => (
+                        <React.Fragment key={index}>
+                            <li className="nav-item my-1">
+                                <NavLink
+                                    to={item.route}
+                                    exact
+                                    activeClassName="active"
+                                >
+                                    <button
+                                        className="nav-link text-white btn btn-link shadow-none rounded-1 w-100 text-left"
+                                        onClick={onClickMenu}
+                                    >
+                                        {item.name}
+                                    </button>
+                                </NavLink>
+                            </li>
+                        </React.Fragment>
+                    ))}
                 </ul>
             </div>
             <div
@@ -66,6 +70,6 @@ export default function Sidebar({ onClickMenu, onCloseMenu }) {
                     backgroundColor: "rgba(0,0,0,0.6)",
                 }}
             ></div>
-        </>
+        </React.Fragment>
     );
 }
