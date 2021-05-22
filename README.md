@@ -1,1 +1,1 @@
-my react blog website
+my react website with mini projects
