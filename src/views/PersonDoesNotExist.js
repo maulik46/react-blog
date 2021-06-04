@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 export default function Index({ pageTitle }) {
     useEffect(() => {
         document.title = pageTitle;
-    }, []);
+    }, [pageTitle]);
     return (
         <React.Fragment>
             <div className="text-center mt-4 mb-3">
@@ -14,6 +14,7 @@ export default function Index({ pageTitle }) {
                     className="person_does_not_exist_img img-thumbnail"
                     src="https://thispersondoesnotexist.com/image"
                     alt="Flowers"
+                    loading="eager"
                 />
             </div>
             <div className="text-center">

@@ -36,7 +36,7 @@ export default function SimonGame({ pageTitle }) {
                 setErrorMsg({ message: null, status: false });
             }, 2500);
         }
-    }, [errorMsg]);
+    }, [errorMsg, pageTitle]);
     function startGame() {
         setisGameOn(true);
 
