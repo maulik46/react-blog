@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import BlogModel from "../components/BlogModel";
+import BackDrop from "../components/BackDrop";
 import "../assets/css/simonGameCss.css";
 
-export default function SimonGame() {
+export default function SimonGame({ pageTitle }) {
     let [gameLevel, setGameLevel] = useState(0);
     let [isGameOn, setisGameOn] = useState(false);
     let [isCheckOn, setisCheckOn] = useState(true);
@@ -10,8 +12,31 @@ export default function SimonGame() {
     );
     let [userSequence, setUserSequence] = useState([]);
     let [startBtnText, setStartBtnText] = useState("Start");
-    let [myHighScore, setMyHighScore] = useState(0);
+    let [myHighScore, setMyHighScore] = useState(
+        localStorage.getItem("my_high_score") || 0
+    );
+    let [errorMsg, setErrorMsg] = useState({ message: null, status: false });
+    const [isOpenModel, setOpenModel] = useState(false);
 
+    const numberGameHelp = {
+        title: "How to play?",
+        description: `<strong>1.</strong> First press the start button.<br/>
+        <strong>2.</strong> Remember the sequence of the color tiles.<br/>
+        <strong>3.</strong> Then press the color tiles according to generated sequence.<br/>
+        <strong>4.</strong> If your sequence is matched with generated sequence, you will go to the next round.<br/>
+        <strong>5.</strong> After your sequence matched press the next round button.<br/>
+        <strong>6.</strong> To reset your highscore press the reset button. <br/>
+        `,
+    };
+
+    useEffect(() => {
+        document.title = pageTitle;
+        if (errorMsg.message) {
+            setTimeout(() => {
+                setErrorMsg({ message: null, status: false });
+            }, 2500);
+        }
+    }, [errorMsg]);
     function startGame() {
         setisGameOn(true);
 
@@ -53,16 +78,23 @@ export default function SimonGame() {
             const userValueString = userSequence.join("");
             const sequenceValueString = sequence.join("");
             if (userValueString === sequenceValueString) {
-                alert("Correct");
+                // alert("Correct");
+                setErrorMsg({
+                    message: "Your answer is correct.!",
+                    status: true,
+                });
                 document.querySelector("#startBtn").textContent = "Next Round";
 
                 setStartBtnText("Next Round");
                 setGameLevel(gameLevel + 1);
 
-                localStorage.setItem(
-                    "my_high_score",
-                    JSON.stringify(gameLevel + 1)
-                );
+                let myHighScore = localStorage.getItem("my_high_score");
+                if (myHighScore < gameLevel + 1) {
+                    localStorage.setItem(
+                        "my_high_score",
+                        JSON.stringify(gameLevel + 1)
+                    );
+                }
 
                 setMyHighScore(gameLevel + 1);
 
@@ -71,7 +103,12 @@ export default function SimonGame() {
                 // console.log({ createSequence });
                 setSequence([...sequence, createSequence]);
             } else {
-                alert("In-Correct");
+                // alert("In-Correct");
+
+                setErrorMsg({
+                    message: "Your answer is in-correct.!",
+                    status: false,
+                });
                 document.querySelector("#startBtn").textContent = "Start Again";
 
                 setStartBtnText("Start Again");
@@ -86,7 +123,11 @@ export default function SimonGame() {
 
             setisCheckOn(true);
         } else {
-            alert("Please Click the Tiles..!");
+            // alert("Please Click the Tiles..!");
+            setErrorMsg({
+                message: "Please click the color tiles..!",
+                status: false,
+            });
         }
     }
 
@@ -94,29 +135,44 @@ export default function SimonGame() {
         setUserSequence([...userSequence, value]);
     }
 
-    // function resetHighScore() {
-    //     console.log("Cleared");
-    //     localStorage.removeItem("my_high_score", "0");
-    //     setMyHighScore(0);
-    // }
+    function resetHighScore() {
+        console.log("Cleared");
+        localStorage.removeItem("my_high_score");
+        setMyHighScore(0);
+    }
 
     return (
         <React.Fragment>
             <div>
                 <div className="d-flex justify-content-center align-items-center mt-4">
                     <div
-                        className="col-lg-5 col-md-6 col-11 px-2 py-4 rounded shadow-sm"
-                        style={{ backgroundColor: "#e2e2e2" }}
+                        className="card col-lg-5 col-md-6 col-11 pb-4 rounded shadow-sm"
+                        style={{ backgroundColor: "#f9f9f9" }}
                     >
-                        <h5 className="text-center fw-bold">
-                            Level {gameLevel === 0 ? 1 : gameLevel}
-                        </h5>
-                        <div className="text-center fw-bold">
-                            My Highest Score{" "}
-                            {myHighScore ||
-                                localStorage.getItem("my_high_score") ||
-                                0}
+                        <div className="card-header navbar">
+                            <h5 className="text-center fw-bold">
+                                Level {gameLevel === 0 ? 1 : gameLevel}
+                            </h5>
+                            <div className="text-center fw-bold">
+                                My Highest Score{" "}
+                                <span className="bg-dark text-white px-2 rounded">
+                                    {localStorage.getItem("my_high_score") ||
+                                        myHighScore}
+                                </span>
+                            </div>
                         </div>
+                        {errorMsg.message && (
+                            <div
+                                className={`alert  mx-4 mt-3 mb-0 ${
+                                    errorMsg.status
+                                        ? `alert-success`
+                                        : `alert-danger`
+                                }`}
+                            >
+                                <span>{errorMsg.message}</span>
+                            </div>
+                        )}
+
                         <div className="row justify-content-around align-items-center mx-0">
                             <div
                                 id="tile_btn1"
@@ -139,27 +195,27 @@ export default function SimonGame() {
                                 className="col-5  bg-dark my-4 buttonTile disabled"
                             ></div>
                         </div>
-                        <div className="d-flex justify-content-center align-items-center mt-3">
+                        <div className="d-flex flex-column justify-content-center align-items-center mt-2">
                             {!isGameOn && (
-                                <div className="col-11">
-                                    <button
-                                        type="button"
-                                        id="startBtn"
-                                        onClick={startGame}
-                                        className="btn btn-info px-5 my-2 mx-2 py-2 text-white fw-bold col-12"
-                                        disabled={isGameOn}
-                                    >
-                                        {startBtnText}
-                                    </button>
-                                    {/* <button
-                                        type="button"
-                                        onClick={resetHighScore}
-                                        className="btn btn-danger px-5 my-2 mx-2 py-2 text-white fw-bold col-12"
-                                        disabled={isGameOn}
-                                    >
-                                        Reset Score
-                                    </button> */}
-                                </div>
+                                <button
+                                    type="button"
+                                    id="startBtn"
+                                    onClick={startGame}
+                                    className="btn btn-info px-5 my-1 mx-2 py-2 text-white fw-bold col-11"
+                                    disabled={isGameOn}
+                                >
+                                    {startBtnText}
+                                </button>
+                            )}
+
+                            {!isGameOn && gameLevel === 0 && (
+                                <button
+                                    type="button"
+                                    onClick={resetHighScore}
+                                    className="btn btn-danger px-5 my-1 mx-2 py-2 text-white fw-bold col-11"
+                                >
+                                    Reset Score
+                                </button>
                             )}
 
                             {!isCheckOn && (
@@ -172,6 +228,24 @@ export default function SimonGame() {
                                 >
                                     Check
                                 </button>
+                            )}
+
+                            <button
+                                className="btn btn-link btn-sm text-decoration-none px-5 m-2 pt-1  col-11"
+                                onClick={() => setOpenModel(true)}
+                            >
+                                <strong>How to play?</strong>
+                            </button>
+
+                            {isOpenModel && (
+                                <BackDrop
+                                    model={
+                                        <BlogModel
+                                            {...numberGameHelp}
+                                            onClose={() => setOpenModel(false)}
+                                        />
+                                    }
+                                ></BackDrop>
                             )}
                         </div>
                     </div>

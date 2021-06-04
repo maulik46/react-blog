@@ -28,7 +28,7 @@
     transition: All 250ms ease;
 }
 .buttonTile:hover {
-    opacity: 0.6;
+    opacity: 0.8;
     transition: 0.2s ease all;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .buttonTile.active {
-    border: 10px solid #39ff14;
+    border: 10px solid #ababab;
 }
 
 .buttonTile.disabled {

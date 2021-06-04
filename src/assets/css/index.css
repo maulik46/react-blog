@@ -40,6 +40,11 @@ body {
     left: 0px;
 }
 
+.person_does_not_exist_img {
+    width: 400px;
+    height: 400px;
+}
+
 @media screen and (max-width: 700px) {
     .set-model-with {
         width: 340px !important;

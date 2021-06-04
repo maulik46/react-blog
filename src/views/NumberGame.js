@@ -13,7 +13,7 @@ export default function NumberGame({ pageTitle }) {
     const userNumber = useRef();
 
     const numberGameHelp = {
-        title: "Help",
+        title: "How to play?",
         description: `<strong>1.</strong> First enter number between 1 to 100.<br/>
         <strong>2.</strong> Press Check button to check your answer.<br/>
         <strong>3.</strong> You will get hint every time you press Check button.<br/>
