@@ -28,7 +28,7 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
                 <div className="modal-dialog set-model-with">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Create Blog</h5>
+                            <h5 className="modal-title">Create Todo</h5>
                             <button
                                 type="button"
                                 className="btn-close"
@@ -40,8 +40,7 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
                                 <div>
                                     <div className="alert alert-danger p-3">
                                         <h6 className="mb-0">
-                                            Blog title and description is
-                                            required.
+                                            Title and Description is required.
                                         </h6>
                                     </div>
                                 </div>
@@ -59,9 +58,7 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
                                     placeholder="name@example.com"
                                     onKeyUp={handleBlogTitle}
                                 />
-                                <label htmlFor="floatingInput">
-                                    Blog Title
-                                </label>
+                                <label htmlFor="floatingInput">Title</label>
                             </div>
                             <div className="form-floating">
                                 <textarea
@@ -73,6 +70,7 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
                                     placeholder="Write description here"
                                     id="floatingTextarea"
                                     onKeyUp={handleBlogDescription}
+                                    style={{ height: "100px" }}
                                 ></textarea>
                                 <label htmlFor="floatingTextarea">
                                     Description

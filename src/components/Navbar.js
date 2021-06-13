@@ -10,7 +10,7 @@ function Navbar() {
     return (
         <>
             <Router>
-                <nav className="navbar align-items-center bg-dark p-2 flex-wrap position-sticky top-0 topNavigation shadow-sm">
+                <nav className="navbar align-items-center bg-dark py-2  flex-wrap position-sticky top-0 topNavigation shadow-sm">
                     <div className="logoHeading">
                         <NavLink to="/" exact>
                             <h5 className="text-white px-3 py-1">React Apps</h5>

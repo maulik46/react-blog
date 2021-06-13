@@ -5,6 +5,7 @@ import Index from "../views/index";
 import NumberGame from "../views/NumberGame";
 import SimonGame from "../views/simonGame";
 import PersonDoesNotExist from "../views/PersonDoesNotExist";
+import StonePaperScissors from "../views/StonePaperScissors";
 
 export default function RouterLinks() {
     return (
@@ -21,6 +22,9 @@ export default function RouterLinks() {
                 </Route>
                 <Route path="/person-does-not-exist">
                     <PersonDoesNotExist pageTitle="Person does not exist" />
+                </Route>
+                <Route path="/stone-paper-scissors">
+                    <StonePaperScissors pageTitle="Stone Paper Scissors" />
                 </Route>
             </Switch>
         </>

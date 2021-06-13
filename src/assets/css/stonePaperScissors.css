@@ -1,0 +1,17 @@
+.gameBtn.active {
+    background-color: aquamarine !important;
+}
+.game_body {
+    height: 500px;
+    width: 385px;
+    overflow: auto;
+}
+.game_container {
+    height: 88vh;
+}
+.gameBtn:hover {
+    opacity: 0.8;
+}
+.pointer-events-none {
+    pointer-events: none;
+}

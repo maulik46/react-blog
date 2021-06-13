@@ -141,7 +141,7 @@ export default function NumberGame({ pageTitle }) {
     return (
         <React.Fragment>
             <div className="d-flex justify-content-center align-items-center mt-4">
-                <div className="col-xl-3 col-lg-5 col-md-6 col-12 p-4">
+                <div className="col-xl-3 col-lg-5 col-md-6 col-12 p-4 border shadow-sm">
                     {hint && (
                         <div
                             className={`alert 
@@ -205,7 +205,7 @@ export default function NumberGame({ pageTitle }) {
                                 </button>
                             </div>
                         </div>
-                        <div className="mt-3">
+                        <div className="mt-2">
                             <button
                                 className="btn btn-link btn-sm text-decoration-none w-100"
                                 onClick={() => setOpenModel(true)}

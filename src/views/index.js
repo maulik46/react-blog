@@ -5,28 +5,7 @@ import BlogCreateModel from "../components/BlogCreateModel";
 import BackDrop from "../components/BackDrop";
 
 export default function Index({ pageTitle }) {
-    const allBlogs = [
-        {
-            title: "Lorem title",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-            title: "Veniam title",
-            description:
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        },
-        {
-            title: "Irure title",
-            description:
-                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        },
-        {
-            title: "Occaecat title",
-            description:
-                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        },
-    ];
+    const allBlogs = [];
     const [blogs, setBlogs] = useState(allBlogs);
     const [blogDetail, setblogDetail] = useState({});
     const [isOpenModel, setOpenModel] = useState(false);
@@ -58,14 +37,14 @@ export default function Index({ pageTitle }) {
     return (
         <React.Fragment>
             <div className="px-1 px-sm-3 mt-3 mx-2 mx-sm-3">
-                <nav className="navbar rounded-2">
-                    <h4>All Blogs</h4>
+                <nav className="navbar rounded-2 border-bottom">
+                    <h4>All Todo</h4>
                     <div>
                         <button
                             className="btn btn-success px-3"
                             onClick={() => setOpenCreateModel(true)}
                         >
-                            Create Blog
+                            Create Todo
                         </button>
                     </div>
                 </nav>
@@ -82,7 +61,7 @@ export default function Index({ pageTitle }) {
                 ))}
                 {blogs.length === 0 && (
                     <div className="text-center h4 mt-5">
-                        No blogs available..!
+                        No todos are available..!
                     </div>
                 )}
             </div>
