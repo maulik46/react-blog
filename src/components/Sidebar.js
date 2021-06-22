@@ -3,11 +3,12 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar({ onClickMenu, onCloseMenu }) {
     const all_links = [
-        { name: "Blog Todo", route: "/" },
+        { name: "Todos", route: "/" },
         { name: "Number Game", route: "/number-game" },
         { name: "Simon Game", route: "/simon-game" },
         { name: "Person Does Not Exist", route: "/person-does-not-exist" },
         { name: "Stone Paper Scissors", route: "/stone-paper-scissors" },
+        { name: "Tic Tac Toe", route: "/tic-tac-toe" },
     ];
 
     return (
@@ -50,10 +51,12 @@ export default function Sidebar({ onClickMenu, onCloseMenu }) {
                                     activeClassName="active"
                                 >
                                     <button
-                                        className="nav-link text-white btn btn-link shadow-none rounded-1 w-100 text-left"
+                                        className="nav-link text-white btn btn-link shadow-none rounded-1 w-100 "
+                                        style={{ textAlign: "left" }}
                                         onClick={onClickMenu}
                                     >
-                                        {item.name}
+                                        {index + 1}.
+                                        <span className="m-2">{item.name}</span>
                                     </button>
                                 </NavLink>
                             </li>
