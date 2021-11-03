@@ -10,7 +10,9 @@ export default function Index({ pageTitle }) {
         "https://thispersondoesnotexist.com/image",
     ]);
     let loadImageBtn = useRef();
-
+    useEffect(() => {
+        loadNewImage();
+    }, []);
     function loadNewImage() {
         setLoading(true);
         setPersonImage([

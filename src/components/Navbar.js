@@ -3,6 +3,7 @@ import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
 import RouterLinks from "../routes/RouterLinks";
 import Sidebar from "./Sidebar";
+import Logo from "../logo.svg";
 
 function Navbar() {
     let [isShowMenu, showMenu] = useState(false);
@@ -13,7 +14,10 @@ function Navbar() {
                 <nav className="navbar align-items-center bg-dark py-2  flex-wrap position-sticky top-0 topNavigation shadow-sm">
                     <div className="logoHeading">
                         <NavLink to="/" exact>
-                            <h5 className="text-white px-3 py-1">React Apps</h5>
+                            <div className="d-flex align-items-center">
+                                <img src={Logo} height="50" alt="" />
+                                <h5 className="text-white py-1">React Apps</h5>
+                            </div>
                         </NavLink>
                     </div>
                     <div>

@@ -1,0 +1,24 @@
+.memoryCard{
+    height:100px;
+    border:2px solid #aaee99;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.memoryCard:hover{
+    border:2px solid green;
+    transition: 0.2s ease;
+}
+
+.hideCard .memoryAnswer{
+    display:none;
+}
+.disabledCard{
+    pointer-events: none;
+}
+
+.hideCard{
+    background: url("../images/memroy-card.svg");
+    background-size: 40px!important;
+    cursor: pointer;
+}

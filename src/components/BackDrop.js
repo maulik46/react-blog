@@ -1,6 +1,6 @@
 import React from "react";
 
-function BackDrop({ model }) {
+function BackDrop({ model,onClose }) {
     return (
         <React.Fragment>
             <div
@@ -10,6 +10,7 @@ function BackDrop({ model }) {
                     zIndex: "99",
                     backgroundColor: "rgba(0,0,0,0.6)",
                 }}
+                onClick={onClose}
             >
                 {model}
             </div>

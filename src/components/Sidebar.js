@@ -9,6 +9,7 @@ export default function Sidebar({ onClickMenu, onCloseMenu }) {
         { name: "Person Does Not Exist", route: "/person-does-not-exist" },
         { name: "Stone Paper Scissors", route: "/stone-paper-scissors" },
         { name: "Tic Tac Toe", route: "/tic-tac-toe" },
+        { name: "Memory Game", route: "/memory-game" },
     ];
 
     return (

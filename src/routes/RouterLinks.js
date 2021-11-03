@@ -7,6 +7,7 @@ import SimonGame from "../views/simonGame";
 import PersonDoesNotExist from "../views/PersonDoesNotExist";
 import StonePaperScissors from "../views/StonePaperScissors";
 import TicTacToe from "../views/TicTacToe";
+import MemoryGame from "../views/MemoryGame";
 
 export default function RouterLinks() {
     return (
@@ -29,6 +30,9 @@ export default function RouterLinks() {
                 </Route>
                 <Route path="/tic-tac-toe">
                     <TicTacToe pageTitle="Tic Tac Toe" />
+                </Route>
+                <Route path="/memory-game">
+                    <MemoryGame pageTitle="Memory Game" />
                 </Route>
             </Switch>
         </>

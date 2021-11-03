@@ -17,7 +17,6 @@ export default function StonePaperScissors({ pageTitle }) {
         <strong> 2.</strong> If you choose Stone, you will win against Scissors but lose against Paper.<br/>
         <strong> 3.</strong> If you choose Scissors, you will win against Paper but lose against Stone.<br/>
         <strong> 4.</strong> If you choose Paper, you will win against Stone but lose against Scissors.<br/>
-        <strong> 5.</strong> If you want to play again, just click “Play again” button after a game is finished.<br/>
         `,
     };
 
