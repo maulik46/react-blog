@@ -25,9 +25,9 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
     return (
         <React.Fragment>
             <div>
-                <div className="modal-dialog set-model-with">
+                <div className="modal-dialog set-model-with bg-white p-4 rounded">
                     <div className="modal-content">
-                        <div className="modal-header">
+                        <div className="justify-content-between modal-header">
                             <h5 className="modal-title">Create Todo</h5>
                             <button
                                 type="button"
@@ -77,7 +77,7 @@ export default function BlogCreateModel({ onClose, submitBlogData }) {
                                 </label>
                             </div>
                         </div>
-                        <div className="modal-footer">
+                        <div className="modal-footer mt-3 gap-2">
                             <button
                                 type="button"
                                 className="btn btn-success px-4"
