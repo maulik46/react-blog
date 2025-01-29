@@ -7,7 +7,7 @@ export default function Index({ pageTitle }) {
 
     let [loading, setLoading] = useState(true);
     let [personImage, setPersonImage] = useState([
-        "https://thispersondoesnotexist.com/image",
+        "https://thispersondoesnotexist.com",
     ]);
     let loadImageBtn = useRef();
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function Index({ pageTitle }) {
     function loadNewImage() {
         setLoading(true);
         setPersonImage([
-            "https://thispersondoesnotexist.com/image?" + new Date().getTime(),
+            "https://thispersondoesnotexist.com?" + new Date().getTime(),
         ]);
         loadImageBtn.current.disabled = true;
         setTimeout(() => {
